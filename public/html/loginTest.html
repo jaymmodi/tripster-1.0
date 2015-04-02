@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/tripster.css" type="text/css">
+    <title>Tripster</title>
+    <script type= "text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script  type= "text/javascript" src="./js/custom/loginTest.js"></script>
+    <!--<link rel= "stylesheet" type="text/css" href="./css/tripster.css" />-->
+</head >
+<body>
+
+<body>
+
+<div ng-app="myApp" ng-controller="personCtrl">
+
+    <button ng-click="toggle()">Hide user</button>
+
+    <p ng-hide="myVar">
+        First Name: <input type=text ng-model="firstName"><br>
+        Last Name: <input type=text ng-model="lastName"><br><br>
+        Full Name: {{firstName + " " + lastName}}
+    </p>
+
+</div>
+
+
+
+</body>
+</body>
+</html>
