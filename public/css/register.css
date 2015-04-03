@@ -31,3 +31,20 @@ label.control-label {
   font-weight: 600;
   color: #777;  
 }
+
+.ng-invalid.ng-dirty{
+    border-color:#FA787E;
+}
+
+
+.ng-valid.ng-dirty{
+    border-color:#78FA89;
+}
+
+.msg-block {
+    margin-top:5px;
+}
+.msg-error {
+    color:#F00;
+    font-size:14px;
+}

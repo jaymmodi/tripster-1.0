@@ -23,16 +23,17 @@ module.exports = function(app) {
 
 		// create a user, information comes from AJAX request from Angular
 		Users.create({
-			FirstName : req.body.FirstName,
-            LastName : req.body.LastName,
-            Phone : req.body.Phone,
-            Address : req.body.Address,
-            City : req.body.City,
-            State : req.body.State,
-            Country : req.body.Country,
-            UserName : req.body.UserName,
-            Password : req.body.Password,
-            DoB : { type: req.body.DoB, default: Date.now }
+			FirstName 	: req.body.FirstName,
+            LastName 	: req.body.LastName,
+            UserName 	: req.body.UserName,
+            Password 	: req.body.Password, 
+            DoB 		: req.body.DoB ,                       
+            Phone 		: req.body.Phone,
+            Address 	: req.body.Address,
+            City 		: req.body.City,
+            State 		: req.body.State,
+            Country 	: req.body.Country,
+            CreatedTimeStamp: req.body.CreatedTimeStamp
 		}, function(err, user) {
 			if (err)
 				res.send(err);
