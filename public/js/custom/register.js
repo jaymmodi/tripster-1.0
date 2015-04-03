@@ -5,7 +5,9 @@ registerPage.controller('newUserController', function($scope, $http){
 	// UserDetails will hold all the input field content from the html page
 	$scope.FirstName = '';
 	$scope.LastName = '';
-	$scope.UserName = '';
+	$scope.UserName1 = '';
+    $scope.UserName= '';
+    $scope.Password1 = '';
 	$scope.Password = '';
 	$scope.DoB = '';
 	$scope.Phone = '';
@@ -55,16 +57,16 @@ registerPage.controller('newUserController', function($scope, $http){
     	$scope.userDetails.CreatedTimeStamp = new Date();
     	
     	
-    	 $http.post('/api/users',$scope.userDetails)
-         .success(function(data) {
-	            console.log("Create Success\n Data :"+ data);
-	            $scope.userDetails = {};
-    
-        })
-        .error(function(data){
-            console.log("Error Creating User: "+ data);
-            
-        });
+		 $http.post('/api/users',$scope.userDetails)
+		 .success(function(data) {
+		        console.log("Create Success\n Data :"+ data);
+		        $scope.userDetails = {};
+
+		})
+		.error(function(data){
+		    console.log("Error Creating User: "+ data);
+		    
+		});
       };
 
 
@@ -86,4 +88,38 @@ registerPage.controller('newUserController', function($scope, $http){
         });
     };
 
+
+
 });
+
+
+/*
+
+registerPage.directive('pwCheck',function(){
+    return function(scope,element, attrs, ctrl){
+        console.log("From pwcheck: "+scope.userDetails);
+        var me = attrs.ngModel;
+        var matchTo = attrs.username2
+        scope.$watch('[me,matchTo]', function(value){
+            ctrl.$setValidity('pwmatch',scope[me]===scope[matchTo]);
+            console.log("UserName1: "+scope[me]);
+        });
+    }
+
+});
+
+registerPage.directive('pwCheck',function(){
+    //console.log("printed from retype-check");
+    return {
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ctrl){
+            var me = attrs.ngModel;
+            var matchTo = attrs.pwCheck;
+
+            $scope.$watch('[me,matchTo]', function(value){
+                ctrl.$setValidity('pwmatch',scope[me] === scope[matchTo]);
+            });
+        }
+    }
+});
+*/

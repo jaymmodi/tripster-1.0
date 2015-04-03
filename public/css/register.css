@@ -48,3 +48,11 @@ label.control-label {
     color:#F00;
     font-size:14px;
 }
+
+
+
+.image {
+    position:relative;
+    top:6px;
+    float: right;
+}
