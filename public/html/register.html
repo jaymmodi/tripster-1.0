@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="registerPage">
+<html>
 <head>
     <!-- SCROLLS -->
     
     <script type= "text/javascript" src="/js/angular.js"></script>
     <script  type= "text/javascript" src="/js/custom/register.js"></script>
-    <link rel= "stylesheet" type="text/css" href="/css/reg.css" />
+    <link rel= "stylesheet" type="text/css" href="/css/register.css" />
    <link rel= "stylesheet" type="text/css" href="/css/bootstrap.min.css">
    <link rel= "stylesheet" type="text/css" href="/css/bootstrap-switch.css">
    <script type= "text/javascript" src= "/js/jquery.min.js"></script>
@@ -15,19 +15,18 @@
    <script type= "text/javascript" src= "/js/bootstrap-switch.min.js"></script>
     
 </head>
-<body>
+<body ng-app="registerPage" ng-controller="newUserController">
+
 
  <!--added to test angular js -->
-
-
-   <div class="container" ng-submit = "createUser()" ng-controller="newUser" >
+   <div class="container"   >
          <div class="panel panel-primary dialog-panel">
          <div class="panel-heading">
             <h2>Tripster - Sign Up</h2>
 	
          </div>
          <div class="panel-body" >
-            <form class="form-horizontal" role= "form">
+            <form name="registerForm" class="form-horizontal" role= "form" ng-submit = "registerForm.$valid && createUser()">
                <div class="form-group">
                   <label class="control-label col-md-2 col-md-offset-2" for= "id_first_name"> Name </label>
                   <div class="col-md-8">
@@ -107,7 +106,7 @@
                      <div class="col-md-3">
                         <div class="form-group internal ">
                             <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                           <input class="form-control" id= "id_phone" type= "text" placeholder = "xxxxxxxx" ng-model="userDetails.Phone" >
+                           <input class="form-control" id= "id_phone" type= "number" placeholder = "xxxxxxxx" ng-model="userDetails.Phone" >
                         </div>
                      </div>
                   </div>
@@ -155,14 +154,20 @@
                <div class="form-group">
                   <div class="col-md-offset-3 col-md-2">
                      
-					 <input class="btn-lg btn-primary" type="submit" id="submit" value="Create User" ng-click="createUser()" />
+					 <input class="btn-lg btn-primary" type="submit" id="submit" value="Create User"  />
+                  </div>
+                  
+                  <div class="col-md-2">
+                      <input type="button" class="btn-lg btn-danger"  value="Reset Form" onClick="this.form.reset()" ng-click="resetForm()" style= "..." />
                   </div>
                   <div class="col-md-2">
-                     <button class="btn-lg btn-danger" type= "submit1" style= "..."> Reset</button>
+                  	  <input class="btn-lg btn-danger"  type="button" class="btn-lg btn-danger"  value="Cancel" onClick="this.form.reset()" ng-click="resetForm()" style= "..." />
                   </div>
+                  
                   <div class="col-md-2">
-                     <button class="btn-lg btn-danger" type= "submit1" style= "..."> Cancel</button>
+                      <input type="button" class="btn-lg btn-primary"  value="Show all Users (tmp btn)" ng-click="getUserList()" style= "..." />
                   </div>
+                  
                </div>
                <!--           <div class="form-group">
                   <label class="control-label col-md-2 col-md-offset-2" for= "id_state"> State</label>

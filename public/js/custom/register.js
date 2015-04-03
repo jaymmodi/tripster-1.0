@@ -1,35 +1,46 @@
 var registerPage = angular.module('registerPage', []);
 
-registerPage.controller('newUser', ['$scope', function ($scope) {
+registerPage.controller('newUserController', function($scope, $http){
+
+	// UserDetails will hold all the input field content from the html page
     
-	$scope.userDetails = {};
-    $scope.msg = 'Hello, Newbie';
-    $scope.userList = {};
+    $scope.userDetails = {};
+    $scope.userList = [];
+
 
     $scope.createUser = function(){
-			$scope.userList.push($scope.userDetails);
-			console.log($scope.userDetails);
-			$scope.userDetails = {};
-		
+    	 $http.post('/api/users',$scope.userDetails)
+         .success(function(data) {
+	            console.log("Create Success\n Data :"+ data);
+	            $scope.userDetails = {};
+            	
+	           
+        })
+        .error(function(data){
+            console.log("Error Creating User: "+ data);
+            
+        });
+        
+//        $scope.userList.push($scope.userDetails);
+//        console.log($scope.userDetails);
     };
-    
-}]);
 
-/* 
-function mainController($scope, $http) {
-    $scope.formData = {};
+    $scope.resetForm = function(){
+        $scope.userDetails = {};
+        $scope.userList = [];
+    };
 
-    // when submitting the add form, send the text to the node API
-    $scope.createTodo = function() {
-        $http.post('/tripster/signup', $scope.formData)
-            .success(function(data) {
-              //  $scope.formData = {}; // clear the form so our user is ready to enter another
-              //  $scope.todos = data;
-                console.log(data);
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
-     };
-}
- */
+    $scope.getUserList = function(){
+    	$http.get('/api/users')
+        .success(function(data) {
+	            console.log("Get Users Success\n Data :"+ data);
+           		$scope.userList = data;
+	           
+        })
+        .error(function(data){
+            console.log("Get Users Failed");
+            
+        });
+    };
+
+});

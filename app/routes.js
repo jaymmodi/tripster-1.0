@@ -1,7 +1,47 @@
 var Todo = require('./models/todo');
+var Users = require('./models/users');
 
 module.exports = function(app) {
 
+	// Get all the users	
+	app.get('/api/users', function(req, res) {
+
+		// use mongoose to get all users in the database
+		Users.find(function(err, user) {
+
+			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+			if (err)
+				res.send(err);
+
+			res.json(user); // return all users in JSON format
+		});
+	});
+	
+	
+	// create user and send back all users after creation
+	app.post('/api/users', function(req, res) {
+
+		// create a user, information comes from AJAX request from Angular
+		Users.create({
+			FirstName : req.body.FirstName,
+            LastName : req.body.LastName,
+            Phone : req.body.Phone,
+            Address : req.body.Address,
+            City : req.body.City,
+            State : req.body.State,
+            Country : req.body.Country,
+            UserName : req.body.UserName,
+            Password : req.body.Password,
+            DoB : { type: req.body.DoB, default: Date.now }
+		}, function(err, user) {
+			if (err)
+				res.send(err);
+		});
+
+	});
+	
+	
+	
 	// api ---------------------------------------------------------------------
 	// get all todos
 	app.get('/api/todos', function(req, res) {
@@ -57,6 +97,6 @@ module.exports = function(app) {
 
 	// application -------------------------------------------------------------
 	app.get('*', function(req, res) {
-		res.sendfile('./public/html/login.html'); // load the single view file (angular will handle the page changes on the front-end)
+		res.sendfile('./public/html/register.html'); // load the single view file (angular will handle the page changes on the front-end)
 	});
 };
